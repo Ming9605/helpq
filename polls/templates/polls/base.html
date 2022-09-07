@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
 <head>
+<body style="background-color: white">
+
     {% include 'polls/header.html' %}
     {% include 'polls/navbar.html' %}
-</head>
-<body>
     {% block content %}
-    {% endblock %}
-</body>
-<footer>
-    {% include "polls/footer.html" %}
-</footer>
+    
+    {% endblock content %}
+</head>
 
+
+</body>
 </html>

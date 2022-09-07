@@ -1,0 +1,106 @@
+{% extends 'polls/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div style="display:table-cell; background-color:rgba(83, 147, 244, 0.392);
+padding:25px; position: relative; left:90px;
+
+
+        color:black; width: 600px; height:800px; font-size:35px;  border-radius:0px;" >
+
+<p style="color:white">
+        <u>Queue</u>
+
+        <ol>
+        {% for student in student_list %}
+
+                <li>
+                        <div>
+                        
+                        {{student.user.username}}
+                        <br>
+                        {% if user.userprofile.roles == "teacher" %}
+                        <form name = "dismiss" method="post">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <input style="font-size: small; position: relative; left:150px;" name="dismiss" type="submit" value="Dismiss {{student.user.username}}">
+                                <input style="font-size: small; position: relative; left:150px;" name="priority" type="submit" value="Prioritize {{student.user.username}}">
+
+                        </form>
+                        
+                        {% endif %}
+                        </div>
+                </li>
+
+
+        {% endfor %}
+        </ol>
+</p>
+     
+
+{% if user.userprofile.roles == "student" %}
+{% if not user.userprofile.is_in_Queue %}
+
+<form name = "add_name" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input style="font-size: small; position: relative; left:450px;" type="submit" value="Add Name" id="Add Name" name="Add Name">
+        {% if error_message %}
+                <p>{{error_message}}</p>
+        {% endif %}
+</form>
+
+{% endif %}
+{% endif %}
+
+
+</div>
+
+<div style="display:table-cell; ; background-color:rgba(83, 147, 244, 0.612);
+padding:25px; position: relative; left:95px; 
+
+        color:black; 
+        width: 600px; 
+        height:800px; 
+        font-size:35px;  
+        border-radius:0px;" >
+
+<p style="color:rgb(0, 0, 0)">
+        
+        <u style='color: white; font-weight: bold;'
+        >Priority</u>
+<ol>
+        {% for student in p_student_list %}
+
+
+
+
+                        <li>
+                                <div>
+                                
+                                {{student.user.username}}
+                                <br>
+                                {% if user.userprofile.roles == "teacher" %}
+                                <form name = "priority-dismiss" method="post" >
+                                        {% csrf_token %}
+                                        {{ form|crispy }}
+                                <input style="font-size: small; position: relative; left:150px;" name="priority-dismiss"type="submit" value="Dismiss {{student.user.username}}">
+                               </form>
+                               {% endif %}
+                                </div>
+                        </li>
+
+
+
+
+        {% endfor %}
+</ol>
+
+</p>
+</div>
+
+
+
+
+        {% endblock %}

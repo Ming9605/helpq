@@ -2,12 +2,32 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container login">
+<div class="container login"
+style='
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;'>
 <h2>Log In</h2>
 <form method="post">
   {% csrf_token %}
   {{form|crispy}}
-  <button type="submit">Log In</button>
+
+  <br>
+  <a href='/polls/signup/'>If you have not signed up yet click here.</a>
+  <br>
+
+  <button type="submit"
+  style='width: 10%; 
+  background-color: #6794e1; 
+  color: white; 
+  padding: 14px 20px; 
+  margin: 8px 0; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer;'
+
+  >Log In</button>
+  
 </form>
 </div>
 {% endblock %}

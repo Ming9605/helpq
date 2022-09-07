@@ -1,19 +1,56 @@
 {% extends 'polls/base.html' %}
 {% block content %}
 
+
 <div class="container">
 {% if request.user.is_authenticated %}
-        <h1>Hello, {{ user.username }}</h1>
-        {% if latest_question_list %}
-            <ul>
-            {% for question in latest_question_list %}
-                <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-            {% endfor %}
-            </ul>
-        {% endif %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="display:table-cell; background-color:rgba(83, 147, 244, 0.44);
+padding-left: 50px; padding-right: 50px; position: relative; left:470px;">
 
+
+        <h1 style="text-align:center; color: white; font-weight: lighter;">Welcome to the </h1> <a style="color: white; font-size: 40px;font-weight: bold; position: relative; left: 60px" href='/queue/'>Help Q</a>
+
+</div>
+
+</div>
+
+
+<div>
 {% else %}
-    <h1>Please log in!</h1>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div style="display:table-cell; background-color:rgba(83, 147, 244, 0.44); padding: 30px 40px; position: relative; left:500px;">
+<a 
+style=
+'text-align: center; 
+font-weight: bold; 
+color: white;
+font-size: 40px;' 
+
+href='accounts/login/'>Please Log In!</a>
 {% endif %}
         </div>
+
+        
 {% endblock %}
+
