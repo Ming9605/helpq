@@ -1,10 +1,5 @@
 from cProfile import Profile
-from dataclasses import dataclass
-import datetime
-from operator import truediv
 from django.db import models
-from django.utils import timezone
-from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -14,7 +9,6 @@ class UserProfile(models.Model):
     gender = models.CharField(max_length=1, default= "None", null=True)
     roles = models.TextField(User, default="student")
     priority = models.BooleanField(default=False)
-    # age = models.IntegerField(default=69, null=True)
 
     def is_in_Queue(self):
         main = BasicQueue.objects.all()[0]
@@ -40,49 +34,13 @@ class UserProfile(models.Model):
         instance.userprofile.save()
 
 
-# questions
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
 
-    @admin.display(
-        boolean=True,
-        ordering='pub_date',
-        description='Published recently?',
-    )
-    def was_published_recently(self):
-        now = timezone.now()
-        return now - datetime.timedelta(days=1) <= self.pub_date <= now
-    
-    def __str__(self):
-        return self.question_text
-
-    def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
+class Decision(models.Model):
+    decision_text = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.choice_text
+        return self.decision_text
 
-'''
-Beginning from here are the CSIA codes for the Help Queue apart of the IA's Criterion C section !
-'''
-# Classes for each account and stats placed below them
-
-'''
-class VipUser(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    gender = models.CharField(max_length=1, default= "None", null=True)
-    age = models.IntegerField(default=69, null=True)
-
-    def AddName(name):
-        user = name
-'''
 
 
 #Help queue
