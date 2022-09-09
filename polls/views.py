@@ -38,7 +38,6 @@ def profile(request):
             user.last_name = data.get("lastname")
             user.userprofile.gender = data.get("gender")
             user.userprofile.birthday = data.get("birthday")
-            user.userprofile.age = data.get("age")
             user.userprofile.roles = data.get("roles")
             user.save()
             user.userprofile.save()

@@ -6,7 +6,6 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    gender = models.CharField(max_length=1, default= "None", null=True)
     roles = models.TextField(User, default="student")
     priority = models.BooleanField(default=False)
 
